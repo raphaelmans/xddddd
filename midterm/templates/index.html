@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" placeholder="Name" name='name'>
+        <input type="text" placeholder="address" name='address'>
+        <input type="date" placeholder="Birthdate" name='birthdate'>
+        <input type="phone" placeholder="Mobile number" name='mobile_number'>
+
+        <select class="form-control" id="dvd_id" name="dvd_id" required>
+            <option value="" selected hidden>Select DVD</option>
+              {% for dvd in dvds %}
+            <option value="{{dvd.dvd_id}}"> {{dvd.title}}</option>
+              {% endfor %}
+        </select>
+
+        <button type="submit">Insert</button>
+
+    </form>
+    <table>
+        <tr>
+            <th>
+                Name
+            </th>
+        </tr>
+      
+        {% for customer in customers %}
+        <tr>
+            <td>{{customer.name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
